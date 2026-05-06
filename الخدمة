@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>LPlayer FF - الموقع الرسمي</title>
+<meta name="theme-color" content="#FF4500"/>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&family=Rajdhani:wght@700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>emailjs.init('1_BRiw3W-6v9cKGHy');</script>
+<style>
+:root{--fire:#FF4500;--gold:#FFD700;--dark:#0a0a0f;--darker:#050508;--card:#12121e;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--dark);color:#eee;font-family:'Tajawal',sans-serif;overflow-x:hidden;}
+#particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden;}
+.particle{position:absolute;border-radius:50%;animation:floatUp linear infinite;opacity:0;}
+@keyframes floatUp{0%{transform:translateY(100vh) scale(0);opacity:0;}10%{opacity:1;}90%{opacity:0.6;}100%{transform:translateY(-10vh) scale(1.5);opacity:0;}}
+nav{position:fixed;top:0;width:100%;z-index:100;background:linear-gradient(to bottom,#000000cc,transparent);padding:14px 20px;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(6px);}
+.logo{font-family:'Rajdhani',sans-serif;font-size:1.6rem;color:var(--gold);text-shadow:0 0 15px #FFD70099;}
+.nav-links{display:flex;gap:8px;list-style:none;flex-wrap:wrap;font-size:0.78rem;}
+.nav-links a{color:#ccc;text-decoration:none;font-weight:700;transition:color 0.3s;}
+.nav-links a:hover{color:var(--fire);}
+#hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 20px 60px;background:radial-gradient(ellipse at 50% 80%,#FF450022 0%,transparent 70%),var(--darker);z-index:1;}
+.hero-badge{display:inline-block;background:linear-gradient(135deg,#FF4500,#FF8C00);color:#fff;padding:6px 20px;border-radius:30px;font-size:0.85rem;font-weight:700;margin-bottom:20px;animation:pulse 2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 15px #FF450066;}50%{box-shadow:0 0 35px #FF4500cc;}}
+.hero-title{font-family:'Rajdhani',sans-serif;font-size:clamp(3rem,10vw,7rem);font-weight:700;background:linear-gradient(135deg,#FFD700,#FF4500 60%,#FF6B00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:10px;}
+.hero-subtitle{font-size:clamp(1rem,3vw,1.5rem);color:#aaa;margin-bottom:30px;}
+.hero-subtitle span{color:var(--gold);font-weight:900;}
+.hero-stats{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;margin:30px 0;}
+.stat-box{background:var(--card);border:1px solid #FF450033;border-radius:16px;padding:16px 20px;text-align:center;min-width:100px;}
+.stat-num{font-family:'Rajdhani',sans-serif;font-size:2rem;font-weight:700;color:var(--gold);}
+.stat-label{font-size:0.8rem;color:#888;}
+.cta-btn{display:inline-block;margin-top:10px;padding:14px 40px;background:linear-gradient(135deg,#FF4500,#FF8C00);color:#fff;font-size:1.1rem;font-weight:900;border-radius:50px;text-decoration:none;box-shadow:0 6px 25px #FF450055;transition:transform 0.3s;}
+section{position:relative;z-index:1;padding:60px 20px;max-width:1100px;margin:0 auto;}
+.section-title{text-align:center;font-family:'Rajdhani',sans-serif;font-size:2.2rem;font-weight:700;margin-bottom:40px;color:#fff;}
+.section-title::after{content:'';display:block;width:60px;height:3px;background:linear-gradient(90deg,var(--fire),var(--gold));margin:12px auto 0;border-radius:2px;}
+.divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,#FF450044,transparent);margin:10px 0;}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;}
+.about-img{width:180px;height:180px;border-radius:50%;background:linear-gradient(135deg,#FF4500,#FFD700);display:flex;align-items:center;justify-content:center;font-size:5rem;margin:0 auto;box-shadow:0 0 50px #FF450055;}
+.about-text{font-size:1rem;line-height:1.9;color:#bbb;}
+.about-text h3{color:var(--gold);font-size:1.4rem;margin-bottom:10px;}
+.chars-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;}
+.char-card{background:var(--card);border:1px solid #FF450022;border-radius:20px;padding:24px 16px;text-align:center;transition:transform 0.3s,border-color 0.3s;}
+.char-card:hover{transform:translateY(-8px);border-color:var(--fire);}
+.char-icon{font-size:3rem;margin-bottom:12px;}
+.char-name{font-size:1.1rem;font-weight:900;color:var(--gold);margin-bottom:6px;}
+.char-role{font-size:0.82rem;color:#888;margin-bottom:12px;}
+.char-skill{background:#FF450022;border-radius:10px;padding:8px;font-size:0.78rem;color:#ccc;line-height:1.5;}
+.tips-list{display:flex;flex-direction:column;gap:16px;}
+.tip-item{background:var(--card);border-right:4px solid var(--fire);border-radius:14px;padding:18px 20px;display:flex;align-items:flex-start;gap:14px;}
+.tip-num{font-family:'Rajdhani',sans-serif;font-size:1.8rem;font-weight:700;color:var(--fire);min-width:36px;}
+.tip-content h4{font-size:1rem;color:var(--gold);margin-bottom:4px;}
+.tip-content p{color:#999;font-size:0.9rem;line-height:1.6;}
+.weapons-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;}
+.weapon-card{background:var(--card);border:1px solid #ffffff11;border-radius:16px;padding:20px;transition:transform 0.3s,border-color 0.3s;}
+.weapon-card:hover{transform:translateY(-6px);border-color:var(--gold);}
+.weapon-header{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.weapon-icon{font-size:2rem;}
+.weapon-name{font-size:1.1rem;font-weight:900;color:#fff;}
+.weapon-type{font-size:0.78rem;color:var(--fire);}
+.stat-bar{margin-bottom:8px;}
+.stat-bar-label{display:flex;justify-content:space-between;font-size:0.78rem;color:#888;margin-bottom:4px;}
+.bar-bg{background:#ffffff11;border-radius:4px;height:6px;overflow:hidden;}
+.bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--fire),var(--gold));}
+</style><body>
+<div id="particles"></div>
+<nav>
+  <div class="logo">🔥 FF ZONE</div>
+  <ul class="nav-links">
+    <li><a href="#about">عني</a></li>
+    <li><a href="#characters">شخصيات</a></li>
+    <li><a href="#sensitivity">حساسية</a></li>
+    <li><a href="#poll">استطلاع</a></li>
+    <li><a href="#nickname">أسماء</a></li>
+    <li><a href="#countdown">أحداث</a></li>
+    <li><a href="#leaks">أخبار</a></li>
+    <li><a href="#contact">تواصل</a></li>
+  </ul>
+</nav>
+<div id="hero">
+  <div class="hero-badge">🔥 FREE FIRE PRO</div>
+  <div class="hero-title">FREE FIRE</div>
+  <div class="hero-subtitle">دليلك الشامل لعالم <span>البقاء والنصر</span></div>
+  <div class="hero-stats">
+    <div class="stat-box"><div class="stat-num">500M+</div><div class="stat-label">لاعب حول العالم</div></div>
+    <div class="stat-box"><div class="stat-num">#1</div><div class="stat-label">باتل رويال موبايل</div></div>
+    <div class="stat-box"><div class="stat-num">50</div><div class="stat-label">لاعب في كل مباراة</div></div>
+    <div class="stat-box"><div class="stat-num">10</div><div class="stat-label">دقيقة لكل جولة</div></div>
+  </div>
+  <a href="#about" class="cta-btn">🎮 ابدأ رحلتك</a>
+</div>
+<div class="divider"></div>
+<section id="about">
+  <div class="section-title">ما هو Free Fire؟</div>
+  <div class="about-grid">
+    <div><div class="about-img">🔥</div></div>
+    <div class="about-text">
+      <h3>لعبة البقاء الأسطورية</h3>
+      <p>Free Fire هي لعبة باتل رويال من تطوير Garena، تُعدّ من أكثر ألعاب الموبايل شعبيةً. تُلقي فيها بنفسك في جزيرة مع 49 لاعباً آخر، وهدفك: البقاء حياً حتى آخر نفس.</p>
+      <br/>
+      <p>تتميز بشخصياتها الفريدة، أسلحتها المتنوعة، وخرائطها المثيرة. النصر يتطلب مهارة، استراتيجية، وجرأة!</p>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+<section id="characters">
+  <div class="section-title">أفضل الشخصيات</div>
+  <div class="chars-grid">
+    <div class="char-card"><div class="char-icon">⚡</div><div class="char-name">Alok</div><div class="char-role">دعم / شفاء</div><div class="char-skill">Drop the Beat: يزيد سرعة الحركة ويُعيد النقاط لمدة 10 ثوانٍ</div></div>
+    <div class="char-card"><div class="char-icon">🧠</div><div class="char-name">Chrono</div><div class="char-role">دفاعي / تقدم</div><div class="char-skill">Time Turner: ينشئ حقلاً يمنع الرصاصات ويُعزز سرعتك</div></div>
+    <div class="char-card"><div class="char-icon">🌊</div><div class="char-name">Skyler</div><div class="char-role">هجومي / تدمير</div><div class="char-skill">Riptide Rhythm: يُدمر حواجز Gloo Wall ويُعيد النقاط</div></div>
+    <div class="char-card"><div class="char-icon">🔮</div><div class="char-name">K</div><div class="char-role">متعدد الأدوار</div><div class="char-skill">Master of All: يتبدل بين وضع EP وإعادة نقاط الدم</div></div>
+    <div class="char-card"><div class="char-icon">🐺</div><div class="char-name">Wukong</div><div class="char-role">استراتيجي / تخفي</div><div class="char-skill">Camouflage: يتحول لشجيرة لتضليل الأعداء</div></div>
+    <div class="char-card"><div class="char-icon">🎯</div><div class="char-name">Dimitri</div><div class="char-role">دعم الفريق</div><div class="char-skill">Healing Heartbeat: منطقة شفاء تُساعد الرفقاء المُسقطين</div></div>
+  </div>
+</section><div class="divider"></div>
+<section id="tips">
+  <div class="section-title">نصائح الاحتراف 🏆</div>
+  <div class="tips-list">
+    <div class="tip-item"><div class="tip-num">01</div><div class="tip-content"><h4>اختر موقع الهبوط بذكاء</h4><p>ابتعد عن المناطق الكثيفة إذا كنت مبتدئاً. اهبط في أماكن متوسطة للحصول على تجهيزات جيدة.</p></div></div>
+    <div class="tip-item"><div class="tip-num">02</div><div class="tip-content"><h4>استخدم الـ Gloo Wall دائماً</h4><p>تدرّب على نشره بسرعة أثناء المعارك لحماية نفسك وإنقاذ رفقائك.</p></div></div>
+    <div class="tip-item"><div class="tip-num">03</div><div class="tip-content"><h4>أدر الحلقة الآمنة</h4><p>كن دائماً قريباً من مركز الحلقة حتى لا تُضطر للتحرك تحت ضغط.</p></div></div>
+    <div class="tip-item"><div class="tip-num">04</div><div class="tip-content"><h4>تعلم قراءة الخريطة</h4><p>استغل الجبال والمباني للقنص والتخفي. الموقع قد يكون أقوى من السلاح.</p></div></div>
+    <div class="tip-item"><div class="tip-num">05</div><div class="tip-content"><h4>العمل الجماعي = BOOYAH</h4><p>شارك التجهيزات، أنقذ رفقاءك، وهاجموا معاً دائماً.</p></div></div>
+    <div class="tip-item"><div class="tip-num">06</div><div class="tip-content"><h4>تدرّب على الحساسية</h4><p>اضبط الحساسية بما يناسب أسلوبك لتُحسّن دقتك في المعارك.</p></div></div>
+  </div>
+</section>
+<div class="divider"></div>
+<section id="weapons">
+  <div class="section-title">أفضل الأسلحة 🔫</div>
+  <div class="weapons-grid">
+    <div class="weapon-card"><div class="weapon-header"><div class="weapon-icon">🔫</div><div><div class="weapon-name">M1887</div><div class="weapon-type">Shotgun</div></div></div><div class="stat-bar"><div class="stat-bar-label"><span>الضرر</span><span>95/100</span></div><div class="bar-bg"><div class="bar-fill" style="width:95%"></div></div></div><div class="stat-bar"><div class="stat-bar-label"><span>المدى</span><span>30/100</span></div><div class="bar-bg"><div class="bar-fill" style="width:30%"></div></div></div><div class="stat-bar"><div class="stat-bar-label"><span>السرعة</span><span>55/100</span></div><div class="bar-bg"><div class="bar-fill" style="width:55%"></div></div></div></div>
+    <div class="weapon-card"><div class="weapon-header"><div class="weapon-icon">🎯</div><div><div class="weapon-name">M82B</div><div class="weapon-type">قنّاصة</div></div></div><div class="stat-bar"><div class="stat-bar-label"><span>الضرر</span><span>90/100</span></div><div class="bar-bg"><div class="bar-fill" style="width:90%"></div></div></div><div class="stat-bar"><div class="stat-bar-label"><span>المدى</span><span>100/100</span></div><div class="bar-bg"><div class="bar-fill" style="width:100%"></div></div></div><div class="stat-bar"><div class="stat-bar-label"><span>السرعة</span><span>25/100</span></div><div class="bar-bg"><div class="bar-fill" style="width:25%"></div></div></div></div>
+    <div class="weapon-card"><div class="weapon-header"><div class="weapon-icon">⚡</div><div><div class="weapon-name">MP40</div><div class="weapon-type">SMG</div></div></div><div class="stat-bar"><div class="stat-bar-label"><span>الضرر</span><span>60/100</span></div><div class="bar-bg"><div class="bar-fill" style="width:60%"></div></div></div><div class="stat-bar"><div class="stat-bar-label"><span>المدى</span><span>45/100</span></div><div class="bar-bg"><div class="bar-fill" style="width:45%"></div></div></div><div class="stat-bar"><div class="stat-bar-label"><span>السرعة</span><span>95/100</span></div><div class="bar-bg"><div class="bar-fill" style="width:95%"></div></div></div></div>
+    <div class="weapon-card"><div class="weapon-header"><div class="weapon-icon">💥</div><div><div class="weapon-name">AK</div><div class="weapon-type">AR</div></div></div><div class="stat-bar"><div class="stat-bar-label"><span>الضرر</span><span>78/100</span></div><div class="bar-bg"><div class="bar-fill" style="width:78%"></div></div></div><div class="stat-bar"><div class="stat-bar-label"><span>المدى</span><span>70/100</span></div><div class="bar-bg"><div class="bar-fill" style="width:70%"></div></div></div><div class="stat-bar"><div class="stat-bar-label"><span>السرعة</span><span>65/100</span></div><div class="bar-bg"><div class="bar-fill" style="width:65%"></div></div></div></div>
+    <div class="weapon-card"><div class="weapon-header"><div class="weapon-icon">🌟</div><div><div class="weapon-name">SCAR</div><div class="weapon-type">AR</div></div></div><div class="stat-bar"><div class="stat-bar-label"><span>الضرر</span><span>68/100</span></div><div class="bar-bg"><div class="bar-fill" style="width:68%"></div></div></div><div class="stat-bar"><div class="stat-bar-label"><span>المدى</span><span>75/100</span></div><div class="bar-bg"><div class="bar-fill" style="width:75%"></div></div></div><div class="stat-bar"><div class="stat-bar-label"><span>السرعة</span><span>72/100</span></div><div class="bar-bg"><div class="bar-fill" style="width:72%"></div></div></div></div>
+    <div class="weapon-card"><div class="weapon-header"><div class="weapon-icon">🔥</div><div><div class="weapon-name">Groza</div><div class="weapon-type">AR نادر</div></div></div><div class="stat-bar"><div class="stat-bar-label"><span>الضرر</span><span>85/100</span></div><div class="bar-bg"><div class="bar-fill" style="width:85%"></div></div></div><div class="stat-bar"><div class="stat-bar-label"><span>المدى</span><span>65/100</span></div><div class="bar-bg"><div class="bar-fill" style="width:65%"></div></div></div><div class="stat-bar"><div class="stat-bar-label"><span>السرعة</span><span>80/100</span></div><div class="bar-bg"><div class="bar-fill" style="width:80%"></div></div></div></div>
+  </div>
+</section><div class="divider"></div>
+<section id="sensitivity">
+  <div class="section-title">🎯 أفضل إعدادات الحساسية 2026</div>
+  <div style="text-align:center;color:#aaa;margin-bottom:20px;">اختر شركة هاتفك 👇</div>
+  <div class="sens-tabs">
+    <button class="sens-tab active" onclick="showBrand('samsung',this)">📱 Samsung</button>
+    <button class="sens-tab" onclick="showBrand('xiaomi',this)">📱 Xiaomi</button>
+    <button class="sens-tab" onclick="showBrand('oppo',this)">📱 Oppo</button>
+    <button class="sens-tab" onclick="showBrand('infinix',this)">📱 Infinix</button>
+    <button class="sens-tab" onclick="showBrand('oneplus',this)">📱 OnePlus</button>
+    <button class="sens-tab" onclick="showBrand('honor',this)">📱 Honor</button>
+  </div>
+  <div id="brand-samsung" class="sens-panel active">
+    <div class="phone-note">📌 سامسونج — شاشات AMOLED سريعة، لا حاجة لرفع الحساسية كثيراً</div>
+    <div class="phone-subtabs">
+      <button class="sub-tab active" onclick="showSub('sam-s',this)">فئة S</button>
+      <button class="sub-tab" onclick="showSub('sam-a',this)">فئة A</button>
+      <button class="sub-tab" onclick="showSub('sam-m',this)">فئة M</button>
+    </div>
+    <div id="sub-sam-s" class="sub-panel active"><div class="sens-grid"><div class="sens-item"><span>العام</span><strong>78</strong></div><div class="sens-item"><span>النقطة الحمراء</span><strong>74</strong></div><div class="sens-item"><span>2x</span><strong>68</strong></div><div class="sens-item"><span>4x</span><strong>58</strong></div><div class="sens-item"><span>القناص</span><strong>46</strong></div><div class="sens-item"><span>النظرة الحرة</span><strong>82</strong></div></div><p class="sens-note">💡 S23/S24/S25 — 120Hz AMOLED، ثبات مثالي للهيدشوت</p></div>
+    <div id="sub-sam-a" class="sub-panel"><div class="sens-grid"><div class="sens-item"><span>العام</span><strong>85</strong></div><div class="sens-item"><span>النقطة الحمراء</span><strong>80</strong></div><div class="sens-item"><span>2x</span><strong>74</strong></div><div class="sens-item"><span>4x</span><strong>62</strong></div><div class="sens-item"><span>القناص</span><strong>50</strong></div><div class="sens-item"><span>النظرة الحرة</span><strong>88</strong></div></div><p class="sens-note">💡 A54/A34/A14 — شاشات 90Hz</p></div>
+    <div id="sub-sam-m" class="sub-panel"><div class="sens-grid"><div class="sens-item"><span>العام</span><strong>92</strong></div><div class="sens-item"><span>النقطة الحمراء</span><strong>87</strong></div><div class="sens-item"><span>2x</span><strong>80</strong></div><div class="sens-item"><span>4x</span><strong>68</strong></div><div class="sens-item"><span>القناص</span><strong>54</strong></div><div class="sens-item"><span>النظرة الحرة</span><strong>95</strong></div></div><p class="sens-note">💡 M14/M34/M54 — شاشات 60Hz</p></div>
+  </div>
+  <div id="brand-xiaomi" class="sens-panel">
+    <div class="phone-note">📌 شاومي/ريدمي — استخدم Game Turbo وأغلق التطبيقات قبل اللعب</div>
+    <div class="phone-subtabs">
+      <button class="sub-tab active" onclick="showSub('xia-high',this)">رام 6GB+</button>
+      <button class="sub-tab" onclick="showSub('xia-mid',this)">رام 4GB</button>
+      <button class="sub-tab" onclick="showSub('xia-low',this)">رام 2-3GB</button>
+    </div>
+    <div id="sub-xia-high" class="sub-panel active"><div class="sens-grid"><div class="sens-item"><span>العام</span><strong>88</strong></div><div class="sens-item"><span>النقطة الحمراء</span><strong>83</strong></div><div class="sens-item"><span>2x</span><strong>76</strong></div><div class="sens-item"><span>4x</span><strong>64</strong></div><div class="sens-item"><span>القناص</span><strong>52</strong></div><div class="sens-item"><span>النظرة الحرة</span><strong>90</strong></div></div><p class="sens-note">💡 Redmi Note 12/13، Poco X5/X6</p></div>
+    <div id="sub-xia-mid" class="sub-panel"><div class="sens-grid"><div class="sens-item"><span>العام</span><strong>94</strong></div><div class="sens-item"><span>النقطة الحمراء</span><strong>89</strong></div><div class="sens-item"><span>2x</span><strong>82</strong></div><div class="sens-item"><span>4x</span><strong>70</strong></div><div class="sens-item"><span>القناص</span><strong>56</strong></div><div class="sens-item"><span>النظرة الحرة</span><strong>96</strong></div></div><p class="sens-note">💡 Redmi 12C، Redmi A3</p></div>
+    <div id="sub-xia-low" class="sub-panel"><div class="sens-grid"><div class="sens-item"><span>العام</span><strong>100</strong></div><div class="sens-item"><span>النقطة الحمراء</span><strong>95</strong></div><div class="sens-item"><span>2x</span><strong>88</strong></div><div class="sens-item"><span>4x</span><strong>75</strong></div><div class="sens-item"><span>القناص</span><strong>60</strong></div><div class="sens-item"><span>النظرة الحرة</span><strong>100</strong></div></div><p class="sens-note">💡 هواتف الرام المنخفض — جرافيك Smooth</p></div>
+  </div>
+  <div id="brand-oppo" class="sens-panel">
+    <div class="phone-note">📌 أوبو — ColorOS مع HyperBoost</div>
+    <div class="phone-subtabs"><button class="sub-tab active" onclick="showSub('oppo-high',this)">فئة عالية</button><button class="sub-tab" onclick="showSub('oppo-mid',this)">فئة متوسطة</button></div>
+    <div id="sub-oppo-high" class="sub-panel active"><div class="sens-grid"><div class="sens-item"><span>العام</span><strong>82</strong></div><div class="sens-item"><span>النقطة الحمراء</span><strong>77</strong></div><div class="sens-item"><span>2x</span><strong>72</strong></div><div class="sens-item"><span>4x</span><strong>60</strong></div><div class="sens-item"><span>القناص</span><strong>48</strong></div><div class="sens-item"><span>النظرة الحرة</span><strong>85</strong></div></div><p class="sens-note">💡 Oppo Reno / Find X</p></div>
+    <div id="sub-oppo-mid" class="sub-panel"><div class="sens-grid"><div class="sens-item"><span>العام</span><strong>90</strong></div><div class="sens-item"><span>النقطة الحمراء</span><strong>85</strong></div><div class="sens-item"><span>2x</span><strong>78</strong></div><div class="sens-item"><span>4x</span><strong>66</strong></div><div class="sens-item"><span>القناص</span><strong>53</strong></div><div class="sens-item"><span>النظرة الحرة</span><strong>92</strong></div></div><p class="sens-note">💡 Oppo A57/A77/A96</p></div>
+  </div>
+  <div id="brand-infinix" class="sens-panel">
+    <div class="phone-note">📌 انفنكس — العب على Standard + High FPS</div>
+    <div class="phone-subtabs"><button class="sub-tab active" onclick="showSub('inf-note',this)">Note</button><button class="sub-tab" onclick="showSub('inf-hot',this)">Hot</button><button class="sub-tab" onclick="showSub('inf-smart',this)">Smart</button></div>
+    <div id="sub-inf-note" class="sub-panel active"><div class="sens-grid"><div class="sens-item"><span>العام</span><strong>86</strong></div><div class="sens-item"><span>النقطة الحمراء</span><strong>81</strong></div><div class="sens-item"><span>2x</span><strong>75</strong></div><div class="sens-item"><span>4x</span><strong>63</strong></div><div class="sens-item"><span>القناص</span><strong>51</strong></div><div class="sens-item"><span>النظرة الحرة</span><strong>89</strong></div></div><p class="sens-note">💡 Note 40/60</p></div>
+    <div id="sub-inf-hot" class="sub-panel"><div class="sens-grid"><div class="sens-item"><span>العام</span><strong>93</strong></div><div class="sens-item"><span>النقطة الحمراء</span><strong>88</strong></div><div class="sens-item"><span>2x</span><strong>81</strong></div><div class="sens-item"><span>4x</span><strong>69</strong></div><div class="sens-item"><span>القناص</span><strong>55</strong></div><div class="sens-item"><span>النظرة الحرة</span><strong>95</strong></div></div><p class="sens-note">💡 Hot 40/30</p></div>
+    <div id="sub-inf-smart" class="sub-panel"><div class="sens-grid"><div class="sens-item"><span>العام</span><strong>98</strong></div><div class="sens-item"><span>النقطة الحمراء</span><strong>93</strong></div><div class="sens-item"><span>2x</span><strong>86</strong></div><div class="sens-item"><span>4x</span><strong>73</strong></div><div class="sens-item"><span>القناص</span><strong>58</strong></div><div class="sens-item"><span>النظرة الحرة</span><strong>99</strong></div></div><p class="sens-note">💡 Smart 20</p></div>
+  </div>
+  <div id="brand-oneplus" class="sens-panel">
+    <div class="phone-note">📌 OnePlus — OxygenOS، تحتاج حساسية عالية جداً</div>
+    <div class="sens-grid" style="margin-top:16px"><div class="sens-item"><span>العام</span><strong>168</strong></div><div class="sens-item"><span>النقطة الحمراء</span><strong>162</strong></div><div class="sens-item"><span>2x</span><strong>155</strong></div><div class="sens-item"><span>4x</span><strong>142</strong></div><div class="sens-item"><span>القناص</span><strong>115</strong></div><div class="sens-item"><span>النظرة الحرة</span><strong>170</strong></div></div>
+    <p class="sens-note">💡 Nord 5/4/3 — 15 دقيقة تدريب وستشعر بالفرق 🔥</p>
+  </div>
+  <div id="brand-honor" class="sens-panel">
+    <div class="phone-note">📌 Honor — Snapdragon + 120Hz</div>
+    <div class="phone-subtabs"><button class="sub-tab active" onclick="showSub('hon-magic',this)">Magic</button><button class="sub-tab" onclick="showSub('hon-x',this)">X Series</button></div>
+    <div id="sub-hon-magic" class="sub-panel active"><div class="sens-grid"><div class="sens-item"><span>العام</span><strong>192</strong></div><div class="sens-item"><span>النقطة الحمراء</span><strong>187</strong></div><div class="sens-item"><span>2x</span><strong>180</strong></div><div class="sens-item"><span>4x</span><strong>168</strong></div><div class="sens-item"><span>القناص</span><strong>135</strong></div><div class="sens-item"><span>النظرة الحرة</span><strong>195</strong></div></div><p class="sens-note">💡 Magic 3/Pro — 192 القيمة الذهبية! 🏆</p></div>
+    <div id="sub-hon-x" class="sub-panel"><div class="sens-grid"><div class="sens-item"><span>العام</span><strong>110</strong></div><div class="sens-item"><span>النقطة الحمراء</span><strong>105</strong></div><div class="sens-item"><span>2x</span><strong>98</strong></div><div class="sens-item"><span>4x</span><strong>85</strong></div><div class="sens-item"><span>القناص</span><strong>68</strong></div><div class="sens-item"><span>النظرة الحرة</span><strong>115</strong></div></div><p class="sens-note">💡 X8/X9</p></div>
+  </div>
+  <div class="sens-tip-box"><h4>⚠️ نصيحة ذهبية</h4><p>ادخل وضع التدريب 15 دقيقة بعد التطبيق. إذا ثقل الإيم ارفع 5، إذا سرع انخفض 5.</p></div>
+</section>
+<div class="divider"></div>
+<section id="poll">
+  <div class="section-title">📊 أي شخصية تفضل؟</div>
+  <div class="poll-container">
+    <div id="pollOptions">
+      <div class="poll-option" onclick="vote('alok')"><span class="poll-icon">⚡</span><span class="poll-name">Alok</span><div class="poll-bar-wrap"><div class="poll-bar" id="bar-alok"></div></div><span class="poll-pct" id="pct-alok">0%</span></div>
+      <div class="poll-option" onclick="vote('chrono')"><span class="poll-icon">🧠</span><span class="poll-name">Chrono</span><div class="poll-bar-wrap"><div class="poll-bar" id="bar-chrono"></div></div><span class="poll-pct" id="pct-chrono">0%</span></div>
+      <div class="poll-option" onclick="vote('skyler')"><span class="poll-icon">🌊</span><span class="poll-name">Skyler</span><div class="poll-bar-wrap"><div class="poll-bar" id="bar-skyler"></div></div><span class="poll-pct" id="pct-skyler">0%</span></div>
+      <div class="poll-option" onclick="vote('k')"><span class="poll-icon">🔮</span><span class="poll-name">K</span><div class="poll-bar-wrap"><div class="poll-bar" id="bar-k"></div></div><span class="poll-pct" id="pct-k">0%</span></div>
+      <div class="poll-option" onclick="vote('wukong')"><span class="poll-icon">🐺</span><span class="poll-name">Wukong</span><div class="poll-bar-wrap"><div class="poll-bar" id="bar-wukong"></div></div><span class="poll-pct" id="pct-wukong">0%</span></div>
+      <div class="poll-option" onclick="vote('dimitri')"><span class="poll-icon">🎯</span><span class="poll-name">Dimitri</span><div class="poll-bar-wrap"><div class="poll-bar" id="bar-dimitri"></div></div><span class="poll-pct" id="pct-dimitri">0%</span></div>
+    </div>
+    <div id="poll-msg" class="poll-msg" style="display:none"></div>
+  </div>
+  </section><div class="divider"></div>
+<section id="nickname">
+  <div class="section-title">✨ مولّد الأسماء المزخرفة</div>
+  <div class="nick-container">
+    <div class="nick-input-wrap">
+      <input type="text" id="nickInput" class="nick-input" placeholder="اكتب اسمك..." maxlength="20"/>
+      <button class="nick-btn" onclick="generateNick()">🔥 زخرف!</button>
+    </div>
+    <div style="color:#aaa;margin-bottom:10px;font-size:0.88rem;">اختر نمط الزخرفة:</div>
+    <div class="nick-style-btns">
+      <button class="nick-style active" onclick="selectStyle(0,this)">🔥 ناري</button>
+      <button class="nick-style" onclick="selectStyle(1,this)">⚡ برق</button>
+      <button class="nick-style" onclick="selectStyle(2,this)">💎 ألماس</button>
+      <button class="nick-style" onclick="selectStyle(3,this)">★ نجوم</button>
+      <button class="nick-style" onclick="selectStyle(4,this)">👑 ملكي</button>
+      <button class="nick-style" onclick="selectStyle(5,this)">🎯 قناص</button>
+    </div>
+    <div id="nickResult" class="nick-result" style="display:none">
+      <div style="color:#aaa;font-size:0.82rem;margin-bottom:8px;">اسمك المزخرف:</div>
+      <div id="nickOutput" class="nick-output"></div>
+      <button class="nick-copy-btn" onclick="copyNick()">📋 نسخ</button>
+      <div id="nickCopied" style="display:none;color:#00CC44;margin-top:6px;font-weight:700;">✅ تم النسخ!</div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+<section id="countdown">
+  <div class="section-title">⏳ عداد الأحداث القادمة</div>
+  <div class="events-grid">
+    <div class="event-card"><div class="event-badge">🔥 حدث نشط</div><div class="event-name">بطولة الموسم الجديد</div><div class="event-desc">انضم وأثبت أنك الأفضل!</div><div id="timer1"></div></div>
+    <div class="event-card"><div class="event-badge gold-badge">💎 حدث خاص</div><div class="event-name">إطلاق شخصية جديدة</div><div class="event-desc">مهارات لم تُرَ من قبل!</div><div id="timer2"></div></div>
+    <div class="event-card"><div class="event-badge blue-badge">🎁 مكافآت مجانية</div><div class="event-name">حدث تسجيل الدخول</div><div class="event-desc">سجّل يومياً واحصل على جوائز!</div><div id="timer3"></div></div>
+  </div>
+</section>
+<div class="divider"></div>
+<section id="leaks">
+  <div class="section-title">🔥 التسريبات والأخبار</div>
+  <div class="leaks-grid">
+    <div class="leak-card"><div class="leak-header"><span class="leak-badge">🆕 جديد</span><span class="leak-date">مايو 2026</span></div><div class="leak-title">🧬 شخصية جديدة قادمة!</div><div class="leak-body">تسريبات تشير إلى شخصية بمهارة مزدوجة تجمع الهجوم والشفاء.</div><div class="leak-tag">شخصيات</div></div>
+    <div class="leak-card"><div class="leak-header"><span class="leak-badge fire-badge">⚡ حصري</span><span class="leak-date">أبريل 2026</span></div><div class="leak-title">🗺️ خريطة جديدة في الطريق</div><div class="leak-body">صور مسرّبة تكشف خريطة حضرية جديدة بمبانٍ قابلة للتسلق.</div><div class="leak-tag">خرائط</div></div>
+    <div class="leak-card"><div class="leak-header"><span class="leak-badge gold-leak">💎 تأكيد رسمي</span><span class="leak-date">أبريل 2026</span></div><div class="leak-title">🔫 سلاح جديد: LaRR</div><div class="leak-body">رشاش ثقيل جديد بإطلاق نار مزدوج وضرر استثنائي.</div><div class="leak-tag">أسلحة</div></div>
+    <div class="leak-card"><div class="leak-header"><span class="leak-badge">📅 قريباً</span><span class="leak-date">2026</span></div><div class="leak-title">🏆 موسم رانكد جديد</div><div class="leak-body">نظام نقاط محدّث ومكافآت حصرية لرتبة Heroic وما فوق.</div><div class="leak-tag">تحديثات</div></div>
+  </div>
+</section><div class="divider"></div>
+<section id="weaponvote">
+  <div class="section-title">🗳️ صوّت للسلاح الأفضل</div>
+  <div class="wvote-grid">
+    <div class="wvote-card" onclick="voteWeapon('m1887')"><div class="wvote-icon">🔫</div><div class="wvote-name">M1887</div><div class="wvote-bar-wrap"><div class="wvote-bar" id="wbar-m1887"></div></div><div class="wvote-count" id="wcount-m1887">0 صوت</div></div>
+    <div class="wvote-card" onclick="voteWeapon('m82b')"><div class="wvote-icon">🎯</div><div class="wvote-name">M82B</div><div class="wvote-bar-wrap"><div class="wvote-bar" id="wbar-m82b"></div></div><div class="wvote-count" id="wcount-m82b">0 صوت</div></div>
+    <div class="wvote-card" onclick="voteWeapon('mp40')"><div class="wvote-icon">⚡</div><div class="wvote-name">MP40</div><div class="wvote-bar-wrap"><div class="wvote-bar" id="wbar-mp40"></div></div><div class="wvote-count" id="wcount-mp40">0 صوت</div></div>
+    <div class="wvote-card" onclick="voteWeapon('ak')"><div class="wvote-icon">💥</div><div class="wvote-name">AK</div><div class="wvote-bar-wrap"><div class="wvote-bar" id="wbar-ak"></div></div><div class="wvote-count" id="wcount-ak">0 صوت</div></div>
+    <div class="wvote-card" onclick="voteWeapon('groza')"><div class="wvote-icon">🔥</div><div class="wvote-name">Groza</div><div class="wvote-bar-wrap"><div class="wvote-bar" id="wbar-groza"></div></div><div class="wvote-count" id="wcount-groza">0 صوت</div></div>
+    <div class="wvote-card" onclick="voteWeapon('scar')"><div class="wvote-icon">🌟</div><div class="wvote-name">SCAR</div><div class="wvote-bar-wrap"><div class="wvote-bar" id="wbar-scar"></div></div><div class="wvote-count" id="wcount-scar">0 صوت</div></div>
+  </div>
+  <div id="wvote-msg" style="display:none;text-align:center;margin-top:16px;padding:12px;background:#FF450022;border-radius:12px;color:var(--gold);font-weight:700;"></div>
+</section>
+<div class="divider"></div>
+<section id="videos">
+  <div class="section-title">🎬 فيديوهاتي على تيك توك</div>
+  <div class="tiktok-grid">
+    <div class="tiktok-embed-card"><div class="tiktok-placeholder"><div class="tiktok-play">▶</div><div class="tiktok-info">🎮 فيديو Free Fire</div><a href="https://www.tiktok.com/@lplayer_official" target="_blank" class="tiktok-watch-btn">شاهد على تيك توك</a></div></div>
+    <div class="tiktok-embed-card"><div class="tiktok-placeholder"><div class="tiktok-play">▶</div><div class="tiktok-info">🔥 نصائح احتراف</div><a href="https://www.tiktok.com/@lplayer_official" target="_blank" class="tiktok-watch-btn">شاهد على تيك توك</a></div></div>
+    <div class="tiktok-embed-card"><div class="tiktok-placeholder"><div class="tiktok-play">▶</div><div class="tiktok-info">🏆 BOOYAH Moments</div><a href="https://www.tiktok.com/@lplayer_official" target="_blank" class="tiktok-watch-btn">شاهد على تيك توك</a></div></div>
+  </div>
+  <div style="text-align:center;margin-top:24px;"><a href="https://www.tiktok.com/@lplayer_official" target="_blank" class="cta-btn">🎮 شاهد كل الفيديوهات</a></div>
+</section>
+<div class="divider"></div>
+<section id="contact">
+  <div class="section-title">💬 تواصل معي</div>
+  <div class="contact-grid">
+    <div class="contact-card"><div class="contact-icon">💡</div><h3>اقتراحاتك تهمني</h3><p>شاركني أفكارك لتحسين الموقع</p><textarea class="contact-input" id="suggestionText" placeholder="اكتب اقتراحك هنا..."></textarea><button class="contact-btn" onclick="sendSuggestion()">إرسال 🚀</button><div id="suggestionMsg" class="suggestion-msg" style="display:none"></div></div>
+    <div class="contact-card"><div class="contact-icon">🎮</div><h3>تابعني على تيك توك</h3><p>كل جديد في عالم Free Fire</p><a href="https://www.tiktok.com/@lplayer_official" target="_blank" class="tiktok-btn">🎮 @lplayer_official</a><div class="coming-soon">🔔 قريباً على جميع المنصات!</div></div>
+  </div>
+</section>
+<footer>
+  <div class="socials"><a href="https://www.tiktok.com/@lplayer_official" target="_blank" class="social-btn">🎮 تيك توك</a></div>
+  <p>🔔 تابعني — <span class="fire-text">قريباً على جميع المنصات!</span></p>
+  <p style="margin-top:6px;">صنع بـ <span class="fire-text">🔥 شغف Free Fire</span> — 2026</p>
+</footer><script>
+const container=document.getElementById('particles');
+const colors=['#FF4500','#FF6B00','#FFD700','#FF8C00'];
+for(let i=0;i<30;i++){const p=document.createElement('div');p.className='particle';const s=Math.random()*6+2;p.style.cssText=`width:${s}px;height:${s}px;background:${colors[Math.floor(Math.random()*colors.length)]};left:${Math.random()*100}%;animation-duration:${Math.random()*8+6}s;animation-delay:${Math.random()*8}s;`;container.appendChild(p);}
+
+const votes={alok:0,chrono:0,skyler:0,k:0,wukong:0,dimitri:0};
+const charNames={alok:'⚡ Alok',chrono:'🧠 Chrono',skyler:'🌊 Skyler',k:'🔮 K',wukong:'🐺 Wukong',dimitri:'🎯 Dimitri'};
+let voted=false;
+function vote(char){
+  if(voted)return;voted=true;votes[char]++;
+  const total=Object.values(votes).reduce((a,b)=>a+b,0);
+  Object.keys(votes).forEach(c=>{const pct=Math.round((votes[c]/total)*100);document.getElementById('bar-'+c).style.width=pct+'%';document.getElementById('pct-'+c).textContent=pct+'%';});
+  const msg=document.getElementById('poll-msg');msg.style.display='block';msg.textContent='✅ تم تسجيل صوتك على '+charNames[char]+'! شكراً 🔥';
+  document.querySelectorAll('.poll-option').forEach(o=>o.style.cursor='default');
+  const results=Object.keys(votes).map(c=>{const pct=Math.round((votes[c]/total)*100);return charNames[c]+': '+pct+'% ('+votes[c]+' صوت)';}).join('\n');
+  emailjs.send('lplayerofficial','template_a0l9ad7',{subject:'🎮 تصويت جديد على الشخصية!',character:charNames[char],results:results,total:total+' صوت إجمالي',to_email:'louaibouaita7915@gmail.com'});
+}
+
+const wvotes={m1887:0,m82b:0,mp40:0,ak:0,groza:0,scar:0};
+let wvoted=false;
+function voteWeapon(w){
+  if(wvoted)return;wvoted=true;wvotes[w]++;
+  const total=Object.values(wvotes).reduce((a,b)=>a+b,0);
+  Object.keys(wvotes).forEach(k=>{const pct=Math.round((wvotes[k]/total)*100);document.getElementById('wbar-'+k).style.width=pct+'%';document.getElementById('wcount-'+k).textContent=wvotes[k]+' صوت ('+pct+'%)';});
+  document.querySelectorAll('.wvote-card').forEach(c=>c.style.cursor='default');
+  const msg=document.getElementById('wvote-msg');msg.style.display='block';msg.textContent='✅ تم تسجيل صوتك على '+w.toUpperCase()+'! شكراً 🔥';
+  const results=Object.keys(wvotes).map(k=>{const pct=Math.round((wvotes[k]/total)*100);return k.toUpperCase()+': '+pct+'% ('+wvotes[k]+' صوت)';}).join('\n');
+  emailjs.send('lplayerofficial','template_a0l9ad7',{subject:'🔫 تصويت جديد على الأسلحة!',character:'السلاح: '+w.toUpperCase(),results:results,total:total+' صوت إجمالي',to_email:'louaibouaita7915@gmail.com'});
+}
+
+function sendSuggestion(){
+  const text=document.getElementById('suggestionText').value.trim();
+  if(!text){alert('اكتب اقتراحك أولاً!');return;}
+  emailjs.send('lplayerofficial','template_a0l9ad7',{subject:'💡 اقتراح جديد!',character:'زائر',results:text,total:'',to_email:'louaibouaita7915@gmail.com'});
+  document.getElementById('suggestionText').value='';
+  const msg=document.getElementById('suggestionMsg');msg.style.display='block';msg.textContent='✅ تم إرسال اقتراحك 🙏🔥';
+  setTimeout(()=>{msg.style.display='none';},4000);
+}
+
+const nickStyles=[
+  {wrap:n=>`꧁༒${n}༒꧂`},{wrap:n=>`⚡${n.split('').join('⚡')}⚡`},
+  {wrap:n=>`💎•${n}•💎`},{wrap:n=>`★彡${n}彡★`},
+  {wrap:n=>`👑${n}👑`},{wrap:n=>`【🎯${n}🎯】`}
+];
+let selectedStyle=0;
+function selectStyle(i,btn){selectedStyle=i;document.querySelectorAll('.nick-style').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
+function generateNick(){const name=document.getElementById('nickInput').value.trim();if(!name){alert('اكتب اسمك أولاً!');return;}document.getElementById('nickOutput').textContent=nickStyles[selectedStyle].wrap(name);document.getElementById('nickResult').style.display='block';document.getElementById('nickCopied').style.display='none';}
+function copyNick(){navigator.clipboard.writeText(document.getElementById('nickOutput').textContent).then(()=>{document.getElementById('nickCopied').style.display='block';setTimeout(()=>{document.getElementById('nickCopied').style.display='none';},2000);});}
+
+function makeCountdown(id,targetDate){
+  function update(){const now=new Date().getTime();const diff=targetDate-now;if(diff<=0){document.getElementById(id).innerHTML='<span style="color:var(--fire)">انتهى الحدث!</span>';return;}const d=Math.floor(diff/(1000*60*60*24));const h=Math.floor((diff%(1000*60*60*24))/(1000*60*60));const m=Math.floor((diff%(1000*60*60))/(1000*60));const s=Math.floor((diff%(1000*60))/1000);document.getElementById(id).innerHTML=`<div class="timer-boxes"><div class="tbox"><strong>${d}</strong><span>يوم</span></div><div class="tbox"><strong>${h}</strong><span>ساعة</span></div><div class="tbox"><strong>${m}</strong><span>دقيقة</span></div><div class="tbox"><strong>${s}</strong><span>ثانية</span></div></div>`;}
+  update();setInterval(update,1000);
+}
+makeCountdown('timer1',new Date('2026-06-15T00:00:00').getTime());
+makeCountdown('timer2',new Date('2026-06-01T00:00:00').getTime());
+makeCountdown('timer3',new Date('2026-05-20T00:00:00').getTime());
+
+const questions=[
+  {q:'ما هي مدة كل جولة في Free Fire؟',opts:['5 دقائق','10 دقائق','15 دقائق','20 دقائق'],ans:1},
+  {q:'كم عدد اللاعبين في كل مباراة؟',opts:['30 لاعب','40 لاعب','50 لاعب','60 لاعب'],ans:2},
+  {q:'ما اسم مهارة شخصية Alok؟',opts:['Time Turner','Drop the Beat','Camouflage','Riptide Rhythm'],ans:1},
+  {q:'أي سلاح يخترق الـ Gloo Wall؟',opts:['AK','MP40','M82B','M1887'],ans:2},
+  {q:'ما كلمة الفوز في Free Fire؟',opts:['Victory','Winner','BOOYAH','Champion'],ans:2}
+];
+let currentQ=0,score=0,answered=false;
+function renderQuiz(){const q=questions[currentQ];document.getElementById('qNum').textContent='سؤال '+(currentQ+1);document.getElementById('quizQ').textContent=q.q;const optsEl=document.getElementById('quizOpts');optsEl.innerHTML='';q.opts.forEach((opt,i)=>{const btn=document.createElement('button');btn.className='quiz-opt';btn.textContent=opt;btn.onclick=()=>answerQuiz(i,btn,q.ans);optsEl.appendChild(btn);});answered=false;}
+function answerQuiz(i,btn,ans){if(answered)return;answered=true;const btns=document.querySelectorAll('.quiz-opt');btns[ans].classList.add('correct');if(i!==ans){btn.classList.add('wrong');}else{score++;}setTimeout(()=>{currentQ++;if(currentQ<questions.length){renderQuiz();}else{showResult();}},1200);}
+function showResult(){document.getElementById('quizOpts').style.display='none';document.getElementById('quizQ').style.display='none';document.querySelector('.quiz-progress').style.display='none';const res=document.getElementById('quizResult');res.style.display='block';let title,desc;if(score===5){title='🏆 أسطورة Free Fire!';desc='مبروك! أنت الأفضل!';}else if(score>=3){title='🔥 لاعب محترف!';desc='أداء رائع! قليل تدريب للقمة!';}else{title='🎮 لاعب واعد!';desc='استمر وستتحسن!';}res.innerHTML=`<div class="result-score">${score}/5</div><div class="result-title">${title}</div><div class="result-desc">${desc}</div><button class="quiz-restart" onclick="restartQuiz()">🔄 حاول مجدداً</button>`;}
+function restartQuiz(){currentQ=0;score=0;document.getElementById('quizOpts').style.display='flex';document.getElementById('quizQ').style.display='block';document.querySelector('.quiz-progress').style.display='block';document.getElementById('quizResult').style.display='none';renderQuiz();}
+renderQuiz();
+
+function showBrand(brand,btn){document.querySelectorAll('[id^="brand-"]').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.sens-tab').forEach(t=>t.classList.remove('active'));document.getElementById('brand-'+brand).classList.add('active');btn.classList.add('active');const firstSub=document.querySelector('#brand-'+brand+' .sub-tab');if(firstSub)firstSub.click();}
+function showSub(id,btn){const parent=btn.closest('[id^="brand-"],[id^="sens-"],.sens-panel');parent.querySelectorAll('.sub-panel').forEach(p=>p.classList.remove('active'));parent.querySelectorAll('.sub-tab').forEach(t=>t.classList.remove('active'));document.getElementById('sub-'+id).classList.add('active');btn.classList.add('active');}
+</script>
+</body>
+</html><style>
+.maps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;}
+.map-card{background:var(--card);border:1px solid #FF450022;border-radius:20px;padding:22px;}
+.map-header{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.map-emoji{font-size:2.2rem;}
+.map-name{font-size:1.2rem;font-weight:900;color:var(--gold);}
+.map-tag{font-size:0.78rem;color:#888;}
+.map-zones{display:flex;flex-direction:column;gap:8px;}
+.zone{padding:8px 12px;border-radius:8px;font-size:0.85rem;color:#ccc;}
+.zone.hot{background:#FF450022;border-right:3px solid #FF4500;}
+.zone.mid{background:#FFD70011;border-right:3px solid #FFD700;}
+.zone.safe{background:#00FF0011;border-right:3px solid #00CC44;}
+.teams-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;}
+.team-card{background:var(--card);border:1px solid #ffffff11;border-radius:20px;padding:22px;transition:transform 0.3s;}
+.team-card:hover{transform:translateY(-6px);border-color:var(--gold);}
+.team-title{font-size:1.1rem;font-weight:900;color:var(--gold);margin-bottom:6px;}
+.team-desc{font-size:0.82rem;color:#888;margin-bottom:14px;line-height:1.5;}
+.team-members{display:flex;flex-direction:column;gap:10px;}
+.member{display:flex;align-items:center;gap:10px;background:#ffffff08;border-radius:10px;padding:8px 12px;}
+.member-icon{font-size:1.4rem;}
+.member b{display:block;color:#fff;font-size:0.95rem;}
+.member small{color:#888;font-size:0.78rem;}
+.sens-tabs{display:flex;justify-content:center;gap:10px;margin-bottom:24px;flex-wrap:wrap;}
+.sens-tab{background:var(--card);border:1px solid #FF450033;color:#ccc;padding:8px 18px;border-radius:30px;font-size:0.9rem;font-family:'Tajawal',sans-serif;font-weight:700;cursor:pointer;transition:all 0.3s;}
+.sens-tab.active,.sens-tab:hover{background:linear-gradient(135deg,#FF4500,#FF8C00);color:#fff;border-color:transparent;}
+.sens-panel{display:none;}
+.sens-panel.active{display:block;}
+.phone-note{background:#ffffff08;border-right:3px solid var(--gold);border-radius:10px;padding:10px 14px;margin-bottom:16px;color:#bbb;font-size:0.88rem;}
+.phone-subtabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+.sub-tab{background:#ffffff08;border:1px solid #ffffff11;color:#aaa;padding:7px 16px;border-radius:20px;font-family:'Tajawal',sans-serif;font-size:0.82rem;cursor:pointer;transition:all 0.3s;}
+.sub-tab.active,.sub-tab:hover{background:var(--fire);color:#fff;border-color:transparent;}
+.sub-panel{display:none;}
+.sub-panel.active{display:block;}
+.sens-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px;}
+.sens-item{background:var(--card);border:1px solid #FF450022;border-radius:12px;padding:14px;text-align:center;}
+.sens-item span{display:block;color:#888;font-size:0.78rem;margin-bottom:6px;}
+.sens-item strong{font-size:1.8rem;color:var(--gold);font-family:'Rajdhani',sans-serif;}
+.sens-note{text-align:center;color:#aaa;font-size:0.85rem;background:#FF450011;border-radius:10px;padding:12px;}
+.sens-tip-box{background:#FF450011;border:1px solid #FF450033;border-radius:14px;padding:18px 20px;margin-top:20px;}
+.sens-tip-box h4{color:var(--fire);margin-bottom:6px;}
+.sens-tip-box p{color:#aaa;font-size:0.88rem;line-height:1.7;}
+.poll-container{max-width:600px;margin:0 auto;}
+.poll-option{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid #ffffff11;border-radius:14px;padding:14px 18px;margin-bottom:12px;cursor:pointer;transition:all 0.3s;}
+.poll-option:hover{border-color:var(--fire);}
+.poll-icon{font-size:1.6rem;min-width:32px;}
+.poll-name{font-weight:700;font-size:0.95rem;min-width:65px;}
+.poll-bar-wrap{flex:1;background:#ffffff11;border-radius:6px;height:8px;overflow:hidden;}
+.poll-bar{height:100%;background:linear-gradient(90deg,var(--fire),var(--gold));border-radius:6px;width:0%;transition:width 0.6s ease;}
+.poll-pct{font-size:0.85rem;color:var(--gold);font-weight:700;min-width:34px;}
+.poll-msg{text-align:center;padding:14px;background:#FF450022;border-radius:12px;font-size:1rem;color:var(--gold);font-weight:700;}
+.quiz-container{max-width:600px;margin:0 auto;background:var(--card);border-radius:20px;padding:26px;border:1px solid #FF450022;}
+.quiz-progress{color:var(--fire);font-weight:700;margin-bottom:14px;font-size:0.88rem;}
+.quiz-question{font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:20px;line-height:1.6;}
+.quiz-options{display:flex;flex-direction:column;gap:10px;}
+.quiz-opt{background:#ffffff08;border:1px solid #ffffff11;border-radius:12px;padding:12px 16px;cursor:pointer;font-size:0.95rem;font-family:'Tajawal',sans-serif;color:#ccc;text-align:right;transition:all 0.3s;}
+.quiz-opt:hover{border-color:var(--fire);background:#FF450011;color:#fff;}
+.quiz-opt.correct{background:#00CC4422;border-color:#00CC44;color:#00CC44;}
+.quiz-opt.wrong{background:#FF450022;border-color:#FF4500;color:#FF4500;}
+.quiz-result{text-align:center;padding:20px;}
+.result-score{font-size:3rem;font-family:'Rajdhani',sans-serif;color:var(--gold);}
+.result-title{font-size:1.2rem;font-weight:900;color:#fff;margin:8px 0 4px;}
+.result-desc{color:#aaa;font-size:0.9rem;margin-bottom:18px;}
+.quiz-restart{background:linear-gradient(135deg,#FF4500,#FF8C00);color:#fff;border:none;border-radius:30px;padding:10px 26px;font-size:0.95rem;font-family:'Tajawal',sans-serif;font-weight:700;cursor:pointer;}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;}
+.contact-card{background:var(--card);border:1px solid #FF450022;border-radius:20px;padding:26px;text-align:center;}
+.contact-icon{font-size:2.6rem;margin-bottom:12px;}
+.contact-card h3{font-size:1.2rem;color:var(--gold);margin-bottom:6px;}
+.contact-card p{color:#888;font-size:0.88rem;margin-bottom:16px;line-height:1.6;}
+.contact-input{width:100%;background:#ffffff08;border:1px solid #FF450033;border-radius:12px;padding:12px;color:#fff;font-family:'Tajawal',sans-serif;font-size:0.9rem;resize:vertical;min-height:90px;margin-bottom:12px;outline:none;}
+.contact-btn{background:linear-gradient(135deg,#FF4500,#FF8C00);color:#fff;border:none;border-radius:30px;padding:11px 24px;font-size:0.95rem;font-family:'Tajawal',sans-serif;font-weight:700;cursor:pointer;width:100%;}
+.suggestion-msg{margin-top:12px;padding:10px;background:#00CC4422;border-radius:10px;color:#00CC44;font-weight:700;}
+.tiktok-btn{display:inline-block;background:#000;color:#fff;padding:12px 24px;border-radius:30px;text-decoration:none;font-weight:700;font-size:1rem;margin-bottom:14px;border:1px solid #ffffff22;}
+.coming-soon{background:#FF450022;border-radius:10px;padding:10px;color:var(--fire);font-weight:700;font-size:0.9rem;}
+.nick-container{max-width:560px;margin:0 auto;}
+.nick-input-wrap{display:flex;gap:10px;margin-bottom:16px;}
+.nick-input{flex:1;background:#ffffff08;border:1px solid #FF450033;border-radius:12px;padding:12px 16px;color:#fff;font-family:'Tajawal',sans-serif;font-size:1rem;outline:none;}
+.nick-btn{background:linear-gradient(135deg,#FF4500,#FF8C00);color:#fff;border:none;border-radius:12px;padding:12px 20px;font-size:0.95rem;font-family:'Tajawal',sans-serif;font-weight:700;cursor:pointer;white-space:nowrap;}
+.nick-style-btns{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+.nick-style{background:var(--card);border:1px solid #FF450033;color:#ccc;padding:7px 14px;border-radius:20px;font-family:'Tajawal',sans-serif;font-size:0.85rem;cursor:pointer;transition:all 0.3s;}
+.nick-style.active,.nick-style:hover{background:linear-gradient(135deg,#FF4500,#FF8C00);color:#fff;border-color:transparent;}
+.nick-result{background:var(--card);border:1px solid #FFD70033;border-radius:14px;padding:20px;text-align:center;}
+.nick-output{font-size:1.5rem;color:var(--gold);font-weight:900;margin:10px 0;word-break:break-all;}
+.nick-copy-btn{background:linear-gradient(135deg,#FFD700,#FF8C00);color:#000;border:none;border-radius:20px;padding:9px 22px;font-family:'Tajawal',sans-serif;font-weight:700;cursor:pointer;}
+.events-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;}
+.event-card{background:var(--card);border:1px solid #FF450022;border-radius:20px;padding:22px;text-align:center;}
+.event-badge{display:inline-block;background:#FF450022;color:var(--fire);border:1px solid #FF450044;border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:700;margin-bottom:12px;}
+.gold-badge{background:#FFD70022;color:var(--gold);border-color:#FFD70044;}
+.blue-badge{background:#4488FF22;color:#4488FF;border-color:#4488FF44;}
+.event-name{font-size:1.1rem;font-weight:900;color:#fff;margin-bottom:6px;}
+.event-desc{color:#888;font-size:0.85rem;margin-bottom:16px;line-height:1.5;}
+.timer-boxes{display:flex;justify-content:center;gap:8px;}
+.tbox{background:#FF450011;border:1px solid #FF450033;border-radius:10px;padding:8px 12px;min-width:48px;}
+.tbox strong{display:block;font-family:'Rajdhani',sans-serif;font-size:1.4rem;color:var(--gold);}
+.tbox span{font-size:0.68rem;color:#888;}
+.combos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;}
+.combo-card{background:var(--card);border:1px solid #FF450022;border-radius:20px;padding:22px;transition:transform 0.3s;}
+.combo-card:hover{transform:translateY(-6px);border-color:var(--gold);}
+.combo-title{font-size:1.05rem;font-weight:900;color:var(--gold);margin-bottom:16px;}
+.combo-chars{display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:14px;flex-wrap:wrap;}
+.combo-char{background:#FF450011;border:1px solid #FF450033;border-radius:10px;padding:8px 12px;text-align:center;font-size:1.2rem;min-width:54px;}
+.combo-char span{display:block;font-size:0.68rem;color:#aaa;margin-top:3px;}
+.combo-plus{color:var(--fire);font-size:1.3rem;font-weight:900;}
+.combo-effect{background:#ffffff06;border-radius:8px;padding:10px;font-size:0.82rem;color:#bbb;line-height:1.5;margin-bottom:8px;}
+.combo-rating{font-size:0.82rem;color:var(--gold);}
+.loot-tabs{display:flex;gap:10px;justify-content:center;margin-bottom:20px;flex-wrap:wrap;}
+.loot-tab{background:var(--card);border:1px solid #FF450033;color:#ccc;padding:8px 18px;border-radius:30px;font-family:'Tajawal',sans-serif;font-size:0.9rem;font-weight:700;cursor:pointer;transition:all 0.3s;}
+.loot-tab.active,.loot-tab:hover{background:linear-gradient(135deg,#FF4500,#FF8C00);color:#fff;border-color:transparent;}
+.loot-panel{display:none;}
+.loot-panel.active{display:block;}
+.loot-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
+.loot-spot{border-radius:12px;padding:16px;}
+.hot-spot{background:#FF450011;border:1px solid #FF450033;}
+.mid-spot{background:#FFD70011;border:1px solid #FFD70033;}
+.safe-spot{background:#00CC4411;border:1px solid #00CC4433;}
+.spot-icon{font-size:1.3rem;margin-bottom:4px;}
+.spot-name{font-weight:900;font-size:1rem;color:#fff;margin-bottom:3px;}
+.spot-level{font-size:0.75rem;color:#aaa;margin-bottom:8px;}
+.spot-items{font-size:0.8rem;color:#ccc;line-height:1.6;}
+.leaks-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;}
+.leak-card{background:var(--card);border:1px solid #ffffff11;border-radius:16px;padding:18px;transition:transform 0.3s;}
+.leak-card:hover{transform:translateY(-6px);border-color:var(--fire);}
+.leak-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.leak-badge{background:#FF450022;color:var(--fire);border-radius:20px;padding:3px 10px;font-size:0.75rem;font-weight:700;}
+.fire-badge{background:#FF6B0022;color:#FF6B00;}
+.gold-leak{background:#FFD70022;color:var(--gold);}
+.leak-date{font-size:0.75rem;color:#666;}
+.leak-title{font-size:1rem;font-weight:900;color:#fff;margin-bottom:8px;}
+.leak-body{font-size:0.85rem;color:#aaa;line-height:1.6;margin-bottom:12px;}
+.leak-tag{display:inline-block;background:#ffffff0a;border-radius:8px;padding:3px 10px;font-size:0.72rem;color:#888;}
+.wvote-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;}
+.wvote-card{background:var(--card);border:1px solid #ffffff11;border-radius:14px;padding:18px;text-align:center;cursor:pointer;transition:all 0.3s;}
+.wvote-card:hover{border-color:var(--fire);transform:translateY(-6px);}
+.wvote-icon{font-size:1.8rem;margin-bottom:6px;}
+.wvote-name{font-weight:900;color:#fff;margin-bottom:10px;}
+.wvote-bar-wrap{background:#ffffff11;border-radius:6px;height:7px;margin-bottom:6px;overflow:hidden;}
+.wvote-bar{height:100%;background:linear-gradient(90deg,var(--fire),var(--gold));border-radius:6px;width:0%;transition:width 0.6s ease;}
+.wvote-count{font-size:0.78rem;color:#888;}
+.tiktok-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;}
+.tiktok-embed-card{border-radius:18px;overflow:hidden;border:1px solid #ffffff11;}
+.tiktok-placeholder{background:linear-gradient(135deg,#1a1a2e,#16213e);padding:36px 16px;text-align:center;min-height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;}
+.tiktok-play{width:54px;height:54px;background:linear-gradient(135deg,#FF4500,#FF8C00);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:#fff;cursor:pointer;}
+.tiktok-info{color:#aaa;font-size:0.85rem;}
+.tiktok-watch-btn{background:#000;color:#fff;padding:8px 18px;border-radius:20px;text-decoration:none;font-weight:700;font-size:0.82rem;border:1px solid #ffffff22;}
+footer{position:relative;z-index:1;text-align:center;padding:40px 20px 24px;background:linear-gradient(to top,#000000,transparent);color:#555;font-size:0.88rem;}
+footer .fire-text{color:var(--fire);font-weight:900;}
+footer .socials{display:flex;justify-content:center;gap:16px;margin-bottom:16px;}
+footer .social-btn{background:var(--card);border:1px solid #FF450033;color:#ccc;padding:8px 18px;border-radius:30px;text-decoration:none;font-size:0.85rem;font-weight:700;transition:all 0.3s;}
+footer .social-btn:hover{background:var(--fire);color:#fff;}
+@media(max-width:700px){.about-grid{grid-template-columns:1fr;text-align:center;}.sens-grid{grid-template-columns:repeat(2,1fr);}}
+</style>
+</head>
